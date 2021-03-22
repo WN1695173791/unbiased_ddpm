@@ -1,5 +1,5 @@
-# denoising-diffusion-pytorch
-Implementation of Denoising Diffusion Probabilistic Models in PyTorch
+# spatially unbiased ddpm
+iccv id 1935
 
 ## Installation
 
@@ -19,22 +19,18 @@ First prepare lmdb dataset:
 python prepare_data.py --size [SIZES, e.g. 128,256] --out [LMDB NAME] [DATASET PATH]
 ```
 
-Then run training looop!
+Then run training loop!
 
 
 ```bash
-python train.py --n_gpu [NUMBER OF GPUS FOR TRAINING] --conf config/diffusion.conf 
+python train.py --conf config/diffusion.conf 
 ```
 
-Also, you can tried to use improved configurations from https://openreview.net/forum?id=-NEXDKk8gZ (Cosine beta schedule, more multi-headed self attention, affine modulation for time conditions, new training hyperparameters.)
+Modify path and hyperparameters in diffusion.conf.
+Set self.pe and self.pe_enc in model.py for positional encoding.
 
-```bash
-python train.py --n_gpu [NUMBER OF GPUS FOR TRAINING] --conf config/improved.conf 
-```
+## Toy dataset
+Spatially biased color-MNIST: https://drive.google.com/drive/folders/15Ll4P0kzLu98ZyJFfFY9vAbSIwoN7GIn?usp=sharing
 
-## Samples
+Code mostly based on https://github.com/rosinality/denoising-diffusion-pytorch
 
-Samples from FFHQ
-
-![Samples from FFHQ 1](doc/diffusion1.png)
-![Samples from FFHQ 2](doc/diffusion2.png)
